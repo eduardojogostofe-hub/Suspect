@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUSPECT</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+        <section id="welcomePanel" class="panel welcome-panel">
+          <div class="welcome-visual" aria-hidden="true">
+            <div class="signal-orbit orbit-outer"></div>
+            <div class="signal-orbit orbit-middle"></div>
+            <div class="signal-orbit orbit-inner"></div>
+            <div class="signal-core"><span></span></div>
+            <i class="signal-point point-one"></i>
+            <i class="signal-point point-two"></i>
+            <i class="signal-point point-three"></i>
+            <span class="visual-coordinate">NEXO / 07</span>
+          </div>
+          <div class="welcome-content">
+            <p class="eyebrow">ARQUIVO DE BORDO <span>///</span> MULTIPLAYER</p>
+            <h1>SUSPECT<span class="title-mark">.</span></h1>
+            <p class="menu-copy">Uma equipe isolada. Uma ameaça entre vocês. Descubra a verdade antes que seja tarde.</p>
+            <button id="playBtn" class="primary big-button">Iniciar investigação <span aria-hidden="true">→</span></button>
+            <p id="connectionStatus" class="connection-status" aria-live="polite">Conectando ao servidor...</p>
+            <div class="welcome-footer"><span>COOPERAR</span><i></i><span>OBSERVAR</span><i></i><span>DESCOBRIR</span></div>
+          </div>
+        </section>
+
+        <section id="accountPanel" class="panel hidden">
+          <p class="eyebrow">IDENTIFICAÇÃO</p>
+          <h2>Quem está jogando?</h2>
+          <div class="account-actions">
+            <button id="loginModeBtn" class="primary">Entrar</button>
+            <button id="createAccountModeBtn" class="secondary">Criar conta</button>
+          </div>
+          <div id="accountForm" class="form-stack hidden">
+            <label for="accountNameInput">Nome</label>
+            <input id="accountNameInput" maxlength="18" placeholder="Ex: Alice" />
+            <button id="submitAccountBtn" class="primary">Continuar</button>
+            <button id="backWelcomeBtn" class="ghost">Voltar</button>
+          </div>
+          <p id="accountMessage" class="connection-status"></p>
+        </section>
+
+        <section id="mainMenuPanel" class="panel menu-panel hidden">
+          <div class="menu-illustration" aria-hidden="true">
+            <div class="menu-orbit"><span></span><i></i><b></b></div>
+            <small>ESTAÇÃO NEXO · SETOR 07</small>
+          </div>
+          <div>
+            <p class="eyebrow">CENTRAL DE OPERAÇÕES</p>
+            <h2 id="welcomeNameLabel">Olá</h2>
+            <p class="menu-copy">Escolha como sua equipe vai entrar em campo.</p>
+            <div class="main-menu-actions">
+              <button id="createRoomMenuBtn" class="primary">Criar partida <span aria-hidden="true">→</span></button>
+              <button id="browseRoomsBtn" class="secondary">Procurar partida</button>
+              <button id="skinMenuBtn" class="secondary">Personalizar agente</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="createRoomPanel" class="panel hidden">
+          <p class="eyebrow">NOVA SALA</p>
+          <h2>Configurar partida</h2>
+          <div class="form-stack">
+            <label for="impostorCountInput">Quantidade de impostores</label>
+            <select id="impostorCountInput"><option value="1">1</option><option value="2">2</option></select>
+            <label for="crewCountInput">Quantidade de tripulantes</label>
+            <select id="crewCountInput"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select>
+            <label for="botCountInput">Quantidade de IAs</label>
+            <select id="botCountInput"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <label class="check-row"><input id="allowBotsInput" type="checkbox" checked /> Permitir jogadores de IA</label>
+            <label class="check-row"><input id="fillBotsInput" type="checkbox" /> Preencher com IAs</label>
+            <button id="confirmCreateRoomBtn" class="primary">Criar sala</button>
+            <button class="ghost back-menu-btn">Voltar</button>
+          </div>
+        </section>
+
+        <section id="roomsPanel" class="panel hidden">
+          <div class="section-heading"><div><p class="eyebrow">SALAS ABERTAS</p><h2>Escolha uma partida</h2></div><button class="ghost back-menu-btn">Voltar</button></div>
+          <div id="roomsList" class="rooms-list"></div>
+        </section>
+
+        <section id="skinPanel" class="panel hidden">
+          <div class="section-heading"><div><p class="eyebrow">PERSONAGEM</p><h2>Escolha sua skin</h2></div><button class="ghost back-menu-btn">Voltar</button></div>
+          <div class="skin-preview" id="skinPreview">●</div>
+          <div class="skin-grid">
+            <label>Cor<select id="skinColor"><option value="#38bdf8">Azul</option><option value="#f97316">Laranja</option><option value="#a78bfa">Roxo</option><option value="#4ade80">Verde</option><option value="#f43f5e">Rosa</option><option value="#facc15">Amarelo</option></select></label>
+            <label>Chapéu<select id="skinHat"><option value="none">Nenhum</option><option value="cap">Boné</option><option value="crown">Coroa</option></select></label>
+            <label>Roupa<select id="skinOutfit"><option value="standard">Padrão</option><option value="space">Espacial</option><option value="detective">Detetive</option></select></label>
+            <label>Pet<select id="skinPet"><option value="none">Nenhum</option><option value="mini">Mini</option><option value="drone">Drone</option></select></label>
+          </div>
+          <button id="saveSkinBtn" class="primary">Usar esta skin</button>
+        </section>
+
+        <section id="lobbyPanel" class="panel hidden">
+          <div class="section-heading"><div><p class="eyebrow">SALA</p><h2 id="roomCodeLabel">--</h2></div><button id="leaveRoomBtn" class="ghost">Sair</button></div>
+          <div class="meta-row"><span id="statusLabel">Lobby</span><span id="playerCountLabel">0/8 jogadores</span></div>
+          <div id="roleBadge" class="role-badge hidden">Papel: --</div>
+          <ul id="playerList" class="player-list"></ul>
+          <div class="host-controls"><button id="addBotBtn" class="secondary">Adicionar IA</button><button id="startGameBtn" class="primary">Iniciar partida</button></div>
+        </section>
+
+        <section id="gamePanel" class="panel hidden">
+          <div class="section-heading"><div><p class="eyebrow">PARTIDA</p><h2 id="gameCodeLabel">--</h2></div><div id="gameRoleLabel" class="role-badge hidden">Papel: --</div></div>
+          <div class="game-status-row"><span id="gameStatusLabel">Esperando a partida</span><button id="leaveGameBtn" class="ghost">Sair da sala</button></div>
+          <canvas id="gameCanvas" width="800" height="500"></canvas>
+          <div class="game-hud">
+            <div class="movement-pad" aria-label="Controles de movimento">
+              <button class="move-button up" data-move="arrowup" aria-label="Mover para cima">▲</button>
+              <button class="move-button left" data-move="arrowleft" aria-label="Mover para esquerda">◀</button>
+              <button class="move-button down" data-move="arrowdown" aria-label="Mover para baixo">▼</button>
+              <button class="move-button right" data-move="arrowright" aria-label="Mover para direita">▶</button>
+            </div>
+            <div class="action-dock">
+              <button id="hudInteractBtn" class="action-button interact" disabled>Usar</button>
+              <button id="hudKillBtn" class="action-button kill hidden" disabled>Matar</button>
+              <button id="hudVentBtn" class="action-button vent hidden" disabled>Duto</button>
+              <button id="hudSabotageBtn" class="action-button sabotage hidden" disabled>Falhar</button>
+              <button id="hudReportBtn" class="action-button report hidden" disabled>Reportar</button>
+              <button id="hudMeetingBtn" class="action-button meeting">Reunião</button>
+            </div>
+          </div>
+          <div class="game-actions">
+            <span id="taskProgressLabel">Tarefas: 0/0</span>
+            <span id="sabotageAlert" class="sabotage-alert hidden"></span>
+            <div id="taskList" class="target-list"></div>
+            <div id="gameTargets" class="target-list"></div>
+            <div id="meetingPanel" class="meeting-panel hidden">
+              <strong>Reunião <span id="meetingTimerLabel">25s</span></strong>
+              <div id="chatMessages" class="chat-messages"></div>
+              <div class="chat-row"><input id="chatInput" maxlength="120" placeholder="Digite uma mensagem" /><button id="sendChatBtn" class="secondary">Enviar</button></div>
+              <button id="skipVoteBtn" class="ghost">Pular voto</button>
+            </div>
+          </div>
+          <div id="taskModal" class="task-modal hidden" role="dialog" aria-modal="true">
+            <div class="task-card">
+              <p class="eyebrow">TAREFA</p>
+              <h2 id="taskModalTitle">Objetivo</h2>
+              <p id="taskModalPrompt" class="connection-status"></p>
+              <input id="taskAnswerInput" placeholder="Resposta do puzzle" maxlength="20" />
+              <div class="task-modal-actions">
+                <button id="completeTaskBtn" class="primary">Concluir</button>
+                <button id="closeTaskBtn" class="ghost">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

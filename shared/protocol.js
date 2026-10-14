@@ -1,0 +1,57 @@
+export const PROTOCOL_VERSION = 'suspect/v1';
+
+export const CLIENT_EVENTS = Object.freeze({
+  CREATE_ACCOUNT: 'create_account',
+  LOGIN_ACCOUNT: 'login_account',
+  LIST_ROOMS: 'list_rooms',
+  CREATE_ROOM: 'create_room',
+  JOIN_ROOM: 'join_room',
+  UPDATE_SKIN: 'update_skin',
+  ADD_BOT: 'add_bot',
+  LEAVE_ROOM: 'leave_room',
+  START_GAME: 'start_game',
+  MOVE_PLAYER: 'move_player',
+  COMPLETE_TASK: 'complete_task',
+  KILL_PLAYER: 'kill_player',
+  VOTE_PLAYER: 'vote_player',
+  CALL_MEETING: 'call_meeting',
+  REPORT_BODY: 'report_body',
+  SKIP_VOTE: 'skip_vote',
+  SEND_CHAT: 'send_chat',
+  INTERACT: 'interact',
+  START_SABOTAGE: 'start_sabotage',
+  FIX_SABOTAGE: 'fix_sabotage',
+  ENTER_VENT: 'enter_vent',
+  EXIT_VENT: 'exit_vent',
+});
+
+export const SERVER_EVENTS = Object.freeze({
+  ACCOUNT_READY: 'account_ready',
+  ROOM_LIST: 'room_list',
+  ROOM_STATE: 'room_state',
+  LOBBY_UPDATE: 'lobby_update',
+  SERVER_ERROR: 'server_error',
+  PLAYER_JOINED: 'player_joined',
+  PLAYER_LEFT: 'player_left',
+  ROOM_STARTED: 'room_started',
+  GAME_STATE: 'game_state',
+  PLAYER_MOVED: 'player_moved',
+  ROLE_ASSIGNED: 'role_assigned',
+  GAME_UPDATE: 'game_update',
+  GAME_OVER: 'game_over',
+  MEETING_STARTED: 'meeting_started',
+  MEETING_ENDED: 'meeting_ended',
+  CHAT_MESSAGE: 'chat_message',
+  VOTING_STARTED: 'voting_started',
+  SABOTAGE_STARTED: 'sabotage_started',
+  SABOTAGE_RESOLVED: 'sabotage_resolved',
+});
+
+export const ROOM_STATUS = Object.freeze({
+  LOBBY: 'lobby',
+  STARTING: 'starting',
+  PLAYING: 'playing',
+  MEETING: 'meeting',
+  VOTING: 'voting',
+  ENDED: 'ended',
+});
